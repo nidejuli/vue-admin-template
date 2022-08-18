@@ -71,18 +71,39 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/',
+    path: '/teacher',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/teacher/table',
+    name: '讲师管理',
+    meta: { title: '讲师管理', icon: 'example' },
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        path: 'list',
+        component: () => import('@/views/teacher/list'),
+        name: '讲师列表',
+        meta: { title: '讲师列表', icon: 'table', affix: true }
+      },
+      {
+        path: 'add',
+        component: () => import('@/views/teacher/add'),
+        name: '添加讲师',
+        meta: { title: '添加讲师', icon: 'table', affix: true }
       }
     ]
   },
+  //   {
+  //     path: "/",
+  //     component: Layout,
+  //     redirect: "/dashboard",
+  //     children: [
+  //       {
+  //         path: "dashboard",
+  //         component: () => import("@/views/dashboard/index"),
+  //         name: "Dashboard",
+  //         meta: { title: "Dashboard", icon: "dashboard", affix: true },
+  //       },
+  //     ],
+  //   },
   {
     path: '/documentation',
     component: Layout,
@@ -210,7 +231,11 @@ export const asyncRoutes = [
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        meta: {
+          title: 'Edit Article',
+          noCache: true,
+          activeMenu: '/example/list'
+        },
         hidden: true
       },
       {
@@ -387,11 +412,12 @@ export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
