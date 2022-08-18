@@ -79,13 +79,13 @@ export const constantRoutes = [
     children: [
       {
         path: 'list',
-        component: () => import('@/views/teacher/list'),
+        component: () => import('@/views/edu/teacher/list'),
         name: '讲师列表',
         meta: { title: '讲师列表', icon: 'table', affix: true }
       },
       {
         path: 'add',
-        component: () => import('@/views/teacher/add'),
+        component: () => import('@/views/edu/teacher/add'),
         name: '添加讲师',
         meta: { title: '添加讲师', icon: 'table', affix: true }
       }
