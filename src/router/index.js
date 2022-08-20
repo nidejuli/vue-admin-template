@@ -70,40 +70,43 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+
+  //   {
+  //     path: '/teacher',
+  //     component: Layout,
+  //     redirect: '/teacher/table',
+  //     name: '讲师管理',
+  //     meta: { title: '讲师管理', icon: 'example' },
+  //     children: [
+  //       {
+  //         path: 'list',
+  //         component: () => import('@/views/edu/teacher/list'),
+  //         name: '讲师列表',
+  //         meta: { title: '讲师列表', icon: 'table' }
+  //       }
+  //       ,
+  //       {
+  //         path: 'add',
+  //         component: () => import('@/views/edu/teacher/add'),
+  //         name: '添加讲师',
+  //         meta: { title: '添加讲师', icon: 'table', affix: true }
+  //       }
+  //     ]
+  //   },
   {
-    path: '/teacher',
+    path: '/',
     component: Layout,
-    redirect: '/teacher/table',
-    name: '讲师管理',
-    meta: { title: '讲师管理', icon: 'example' },
+    redirect: '/dashboard',
     children: [
       {
-        path: 'list',
-        component: () => import('@/views/edu/teacher/list'),
-        name: '讲师列表',
-        meta: { title: '讲师列表', icon: 'table', affix: true }
-      },
-      {
-        path: 'add',
-        component: () => import('@/views/edu/teacher/add'),
-        name: '添加讲师',
-        meta: { title: '添加讲师', icon: 'table', affix: true }
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
     ]
   },
-  //   {
-  //     path: "/",
-  //     component: Layout,
-  //     redirect: "/dashboard",
-  //     children: [
-  //       {
-  //         path: "dashboard",
-  //         component: () => import("@/views/dashboard/index"),
-  //         name: "Dashboard",
-  //         meta: { title: "Dashboard", icon: "dashboard", affix: true },
-  //       },
-  //     ],
-  //   },
+
   {
     path: '/documentation',
     component: Layout,
@@ -335,6 +338,30 @@ export const asyncRoutes = [
     ]
   },
 
+  {
+    path: '/teacher',
+    component: Layout,
+    redirect: '/teacher/list',
+    name: '讲师管理',
+    meta: {
+      title: '讲师管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/edu/teacher/list'),
+        name: '讲师列表',
+        meta: { title: '讲师列表' }
+      },
+      {
+        path: 'add',
+        component: () => import('@/views/edu/teacher/add'),
+        name: '添加讲师',
+        meta: { title: '添加讲师' }
+      }
+    ]
+  },
   {
     path: '/zip',
     component: Layout,

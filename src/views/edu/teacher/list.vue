@@ -1,79 +1,44 @@
 <template>
   <div class="app-container">
-    <el-table
-      :data="list"
-      style="width: 100%"
-    >
-      <el-table-column
-        prop="id"
-        label="id"
-        width="180"
-      />
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180"
-      />
-      <el-table-column
-        prop="intro"
-        label="介绍"
-      />
-      <el-table-column
-        prop="career"
-        label="资历"
-      />
-
-      <el-table-column
-        prop="level"
-        label="头衔"
-      >
-        <template slot-scope="scope">
-          {{ scope.row.level === 1 ? '高级讲师' : '首席讲师' }}
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="头像"
-      >
-        <template slot-scope="scope">
-          <img src="scope.row.avatar">
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="gmtCreate"
-        label="添加时间"
-      />
-    </el-table>
+    讲师列表
   </div>
 </template>
+
 <script>
-import teacher from '@/api/teacher/teacher.js'
+// 引入调用teacher.js文件
+import teacher from '@/api/teacher/teacher'
 
 export default {
-  data() {
+  // 写核心代码
+  data() { // 定义变量和初始值
     return {
-      list: null,
-      page: 1,
-      pageSize: 10,
-      total: 0,
-      teacherQuery: {}
+      list: null, // 查询之后接口返回集合
+      total: 0, // 总记录数
+      page: 1, // 当前页
+      pageSize: 10, // 每页记录数
+      teacherQuery: {}// 条件封装对象
     }
   },
-  created() {
+  created() { // 页面渲染之前执行，一般调用methods定义的方法
     this.getList()
   },
-  methods: {
+  methods: { // 创建具体的方法，调用teacher.js定义的方法
+    // 讲师列表的方法
     getList() {
-      teacher.getTeacherListPage(this.page, this.pageSize, this.teacherQuery)
-        .then(response => {
-          // console.log(response);
-          this.list = response.data.records
-          this.total = response.data.total
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      teacher.getTeacherList(this.page, this.pageSize, this.teacherQuery)
+        .then(
+          response => { // 接口返回的数据
+            console.log(response)
+          }
+        )// 请求成功
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )// 请求失败
     }
   }
+
 }
 </script>
+
