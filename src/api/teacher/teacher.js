@@ -11,5 +11,22 @@ export default {
       // data表示吧对象转换json传递到接口里面
       data: teacherQuery
     })
+  },
+  //   删除讲师
+  removeTeacherById(id) {
+    return request({
+      // 接口提交
+      url: `/eduService/teacher/removeTeacherById/${id}`,
+      method: 'delete'
+    })
+  },
+  //   添加讲师
+  saveTeacher(teacher) {
+    return request({
+      // 接口提交
+      url: `/eduService/teacher/addTeacher`,
+      method: 'post',
+      data: teacher
+    })
   }
 }

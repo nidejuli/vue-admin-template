@@ -14,7 +14,12 @@
       <!-- 时间格式替换一下 从element_ui中挑选 -->
       <el-form-item label="添加时间">
         <el-col :span="11">
-          <el-date-picker v-model="teacherQuery.begin" type="date" placeholder="选择开始时间" style="width: 100%;" />
+          <el-date-picker
+            v-model="teacherQuery.begin"
+            type="date"
+            placeholder="选择开始时间"
+            style="width: 100%;"
+          />
         </el-col>
         <el-col class="line" :span="2">-</el-col>
         <el-col :span="11">
@@ -43,6 +48,14 @@
         </template>
       </el-table-column> -->
       <el-table-column prop="gmtCreate" label="添加时间" />
+      <!-- 删除 -->
+
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="removeDateById(scope.row.id)">删除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
 
     <!--分页组件-->
@@ -94,9 +107,38 @@ export default {
             console.log(error)
           }
         )// 请求失败
+    },
+    resetData() {
+      // 清空表单
+      this.teacherQuery = {}
+      // 查询讲师数据
+      this.getList()
+    },
+    // 删除讲师的方法
+    removeDateById(id) {
+      this.$confirm('此操作将永久删除讲师记录，是否继续', '提示', {
+        confirmButtonText: '确定',
+        concelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { // 点击确定，执行then方法
+        teacher.removeTeacherById(id)
+          .then(
+            response => { // 删除成功
+              this.$message({
+                type: 'success',
+                message: '删除成功'
+              })
+              // 返回页面
+              this.getList()
+            })
+          .catch(
+            error => {
+              console.log(error)
+            }
+          )
+      })
     }
   }
-
 }
 </script>
 
