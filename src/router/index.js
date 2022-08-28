@@ -336,6 +336,13 @@ export const asyncRoutes = [
         component: () => import('@/views/edu/teacher/add'),
         name: '添加讲师',
         meta: { title: '添加讲师' }
+      },
+      {
+        path: 'edit/:id',
+        component: () => import('@/views/edu/teacher/add'),
+        name: '编辑讲师',
+        meta: { title: '编辑讲师', noCache: 'tree' },
+        hidden: true
       }
     ]
   },

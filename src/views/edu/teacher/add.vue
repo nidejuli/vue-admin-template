@@ -50,7 +50,23 @@ export default {
       saveBtnDisabled: false // 保存按钮是否禁用,
     }
   },
+  created() { // 页面渲染之前使用
+    if (this.$route.params && this.$route.params.id) {
+      // 从路径获取id值
+      const id = this.$route.params.id
+      // 调用根据id查询的方法
+      this.getTeacherById(id)
+    }
+  },
   methods: {
+    // 根据讲师id查询方法
+    getTeacherById(id) {
+      teacher.getTeacherById()
+        .then(response => {
+          // console.log(response);
+          this.teacher = response.data.teacher
+        })
+    },
     saveOrUpdate() {
       this.saveBtnDisabled = true
       this.saveData()

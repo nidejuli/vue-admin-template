@@ -52,7 +52,9 @@
 
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <router-link :to="'/teacher/edit/' + scope.row.id">
+            <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+          </router-link>
           <el-button size="mini" type="danger" @click="removeDateById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
