@@ -50,6 +50,11 @@ export default {
       saveBtnDisabled: false // 保存按钮是否禁用,
     }
   },
+  watch: {
+    $route(to, from) {
+      this.init()
+    }
+  },
   created() { // 页面渲染之前执行
     // 判断路径是否有id值
     if (this.$route.params && this.$route.params.id) {
@@ -57,6 +62,8 @@ export default {
       const id = this.$route.params.id
       // 调用根据id查询的方法
       this.getTeacherById(id)
+    } else {
+      this.teacher = {}
     }
   },
   methods: {
@@ -68,9 +75,34 @@ export default {
           this.teacher = response.data.teacher
         })
     },
+    init() {
+      if (this.$route.params && this.$route.params.id) {
+        // 从路径获取id值
+        const id = this.$route.params.id
+        // 调用根据id查询的方法
+        this.getTeacherById(id)
+      } else {
+        this.teacher = {}
+      }
+    },
     saveOrUpdate() {
+      if (!this.teacher.id) {
+        this.saveData()
+      } else {
+        this.updateTeacher()
+      }
       this.saveBtnDisabled = true
-      this.saveData()
+    }, // 修改讲师数据
+    updateTeacher() {
+      teacher.updateTeacher(this.teacher)
+        .then(response => {
+          this.$message({
+            message: '修改讲师记录成功',
+            type: 'success'
+          })
+          // 回到讲师列表 路由跳转
+          this.$router.replace({ path: '/teacher/list' })
+        })
     },
     // 保存
     saveData() {

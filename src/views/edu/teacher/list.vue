@@ -47,7 +47,8 @@
           <img src="scope.row.avatar">
         </template>
       </el-table-column> -->
-      <el-table-column prop="gmtCreate" label="添加时间" />
+      <!-- <el-table-column prop="gmtCreate" label="添加时间" /> -->
+      <el-table-column prop="gmtModified" label="修改时间" />
       <!-- 删除 -->
 
       <el-table-column label="操作">
