@@ -39,12 +39,12 @@ export default {
   data() {
     return {
       teacher: {
-        // name: '',
-        // sort: 1,
-        // level: 1,
-        // career: '',
-        // intro: '',
-        // avatar: ''
+        name: '',
+        sort: 1,
+        level: 1,
+        career: '',
+        intro: '',
+        avatar: ''
       },
       // 防止重复提交
       saveBtnDisabled: false // 保存按钮是否禁用,
