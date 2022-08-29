@@ -39,18 +39,19 @@ export default {
   data() {
     return {
       teacher: {
-        name: '',
-        sort: 1,
-        level: 1,
-        career: '',
-        intro: '',
-        avatar: ''
+        // name: '',
+        // sort: 1,
+        // level: 1,
+        // career: '',
+        // intro: '',
+        // avatar: ''
       },
       // 防止重复提交
       saveBtnDisabled: false // 保存按钮是否禁用,
     }
   },
-  created() { // 页面渲染之前使用
+  created() { // 页面渲染之前执行
+    // 判断路径是否有id值
     if (this.$route.params && this.$route.params.id) {
       // 从路径获取id值
       const id = this.$route.params.id
@@ -61,7 +62,7 @@ export default {
   methods: {
     // 根据讲师id查询方法
     getTeacherById(id) {
-      teacher.getTeacherById()
+      teacher.getTeacherById(id)
         .then(response => {
           // console.log(response);
           this.teacher = response.data.teacher
