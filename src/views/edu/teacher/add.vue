@@ -44,7 +44,7 @@
           :key="imagecropperKey"
           :width="300"
           :height="300"
-          :url="BASE_API + '/eduOss/uploadFile'"
+          :url="/*BASE_API + */'http://localhost:8002/eduOss/uploadFile'"
           field="file"
           @close="close"
           @crop-upload-success="cropSuccess"
