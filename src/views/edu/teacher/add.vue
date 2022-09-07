@@ -122,11 +122,15 @@ export default {
     },
     close() { // 关闭上传弹框的方法
       this.imagecropperShow = false
+      // 上传组件初始化
+      this.imagecropperKey = this.imagecropperKey + 1
     },
     cropSuccess(data) { // 上传成功方法
       this.imagecropperShow = false
       // 上传接口图片返回地址
       this.teacher.avatar = data.url
+      // 上传组件初始化
+      this.imagecropperKey = this.imagecropperKey + 1
     },
     saveOrUpdate() {
       if (!this.teacher.id) {
